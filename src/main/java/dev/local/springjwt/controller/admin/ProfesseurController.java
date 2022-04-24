@@ -18,7 +18,6 @@ public class ProfesseurController {
 
     @GetMapping()
     public List<Professeur> index(){
-
         return this.professeurService.findAll();
     }
 }
