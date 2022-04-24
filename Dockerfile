@@ -1,9 +1,10 @@
 FROM openjdk:16-alpine3.13 as PROD
+USER root
 RUN mkdir /web
 COPY .mvn/ /web/.mvn
 COPY mvnw pom.xml /web/
 RUN /web/mvnw dependency:go-offline
-COPY src /web/src
+COPY src /web/src/
 #CREATE ENV
 ARG JAR_FILE=/web/target/api-memoire.jar
 ARG DB_HOST=${DB_HOST}
