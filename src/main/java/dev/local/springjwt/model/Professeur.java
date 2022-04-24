@@ -1,5 +1,6 @@
 package dev.local.springjwt.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,10 +21,13 @@ public class Professeur{
     private int matP;
     @Column(nullable = false)
     private String grade;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    //@JsonIgnore
     private Jury jury;
     @ManyToOne(fetch = FetchType.LAZY)
+    //@JsonIgnore
     private Domaine domaine;
-    @OneToMany(mappedBy = "professeur")
+    @OneToMany(mappedBy = "professeur", fetch = FetchType.LAZY)
+    //@JsonIgnore
     private List<Sujet> sujets;
 }

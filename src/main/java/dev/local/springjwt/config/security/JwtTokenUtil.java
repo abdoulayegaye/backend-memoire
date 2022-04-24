@@ -39,7 +39,7 @@ public class JwtTokenUtil implements Serializable {
     }
     public String getToken(HttpServletRequest req) {
         String token = req.getHeader(HEADER_STRING) ;
-        return token.replace(TOKEN_PREFIX,"");
+        return token.replace(TOKEN_PREFIX,"").trim();
     }
 
     public Date getExpirationDateFromToken(String token) {
