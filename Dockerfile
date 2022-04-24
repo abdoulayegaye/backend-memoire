@@ -15,4 +15,4 @@ ARG SERVER_PORT=${SERVER_PORT}
 #BUILD APP: GENERATE JAR
 RUN ./mvnw package -Dmaven.test.skip
 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom", "-jar","api-memoire.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom", "-jar","target/api-memoire.jar"]
