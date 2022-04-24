@@ -13,6 +13,6 @@ ARG DB_PASSWORD=${DB_PASSWORD}
 ARG DB_NAME=${DB_NAME}
 ARG SERVER_PORT=${SERVER_PORT}
 #BUILD APP: GENERATE JAR
-RUN ./mvnw package
+RUN ./mvnw package -Dmaven.test.skip
 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom", "-jar","api-memoire.jar"]
