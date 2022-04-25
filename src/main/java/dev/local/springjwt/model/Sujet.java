@@ -1,8 +1,10 @@
 package dev.local.springjwt.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -25,8 +27,11 @@ public class Sujet {
     private String problematique;
     @Column()
     private String motivations;
-    @OneToMany(mappedBy = "sujet")
-    private List<Technologie> technologies;
     @ManyToOne(fetch = FetchType.LAZY)
     private Professeur professeur;
+
+    @ManyToMany(mappedBy = "sujets",fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ToString.Exclude
+    Collection<Technologie> technologies;
 }

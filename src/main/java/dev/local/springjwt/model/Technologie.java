@@ -3,6 +3,7 @@ package dev.local.springjwt.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Setter
@@ -19,6 +20,13 @@ public class Technologie {
     private String name;
     @ManyToOne(fetch = FetchType.LAZY)
     private TypeTechnologie typeTechnologie;
-    @ManyToOne
-    private Sujet sujet;
+
+    @ManyToMany(cascade = {
+            CascadeType.MERGE,
+    },fetch=FetchType.EAGER)
+    @JoinTable(name = "sujet_technologie",
+            joinColumns = @JoinColumn(name = "technologie_id"),
+            inverseJoinColumns = @JoinColumn(name = "sujet_id")
+    )
+    Collection<Sujet> sujets ;
 }
